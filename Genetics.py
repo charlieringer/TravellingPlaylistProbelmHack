@@ -41,7 +41,7 @@ def applyCrossover(population, graph):
 
 def applyMutation(population, graph):
     for i in range(0, len(population)):
-        if(random.random() < 0.1):
+        if(random.random() < 0.5):
             population[i] = mutate(population[i][:-1], graph)
     return population
 
