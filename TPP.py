@@ -44,7 +44,8 @@ def main():
         population = applyGenetics(population,playlistGraph)
         population = sortWalks(population)
         bestWalk = population[0]
-        print("Best playlist for this population: ", bestWalk[len(bestWalk)-1])
+        out = "Best playlist for this population: ", str(bestWalk[len(bestWalk)-1])
+        print(out)
     print("Building playlist")
     makePlaylist(population[0][:-1],playlists[playlistSelection][0], token, username)
     print("Done!")

@@ -39,14 +39,23 @@ def applyCrossover(population, graph):
         partB.append(newWalk)
     return partB
 
-def applyMutation(population):
+def applyMutation(population, graph):
+    for i in range(0, len(population)):
+        if(random.random() < 0.1):
+            population[i] = mutate(population[i][:-1], graph)
     return population
+
+def mutate(walk, graph):
+    newWalk = walk[1:]
+    newWalk.append(walk[0])
+    newWalk.append(evaluateWalk(newWalk, graph))
+    return newWalk
 
 def applyGenetics(population, graph):
     newPopA = applySelection(population)
     newPopB = applyCrossover(newPopA, graph)
     newPopulation = newPopA + newPopB
-    newPopulation = applyMutation(newPopulation)
+    newPopulation = applyMutation(newPopulation, graph)
     return newPopulation
 
 def sortWalks(walks):
