@@ -53,6 +53,26 @@ def getWalk(inGraph):
     walk.append(distance)
     return(walk)
 
+def getInitWalkDist(inGraph):
+    graph = cloneGraph(inGraph)
+    walk = []
+    distance = 0.0
+    while(len(graph) > 0):
+        if(len(graph) == 1):
+            #distance between this node and this last point
+            distance+=(graph[0][1][walk[len(walk)-1]])
+            walk.append(graph[0][0])
+            break
+        if(len(walk) == 0):
+            walk.append(graph[0][0])
+            del (graph[0])
+        else:
+            distance+=(graph[0][1][walk[len(walk)-1]])
+            walk.append(graph[0][0])
+            del (graph[0])
+    walk.append(distance)
+    return(walk[len(walk)-1])
+
 def cloneGraph(oldGraph):
     returnList = []
     for node in oldGraph:
@@ -70,8 +90,6 @@ def getDistance(trackData,otherTrackdata):
     dist+= abs(trackData[1]['speechiness']-otherTrackdata[1]['speechiness'])
     dist+= abs(trackData[1]['valence']-otherTrackdata[1]['valence'])
     dist+= abs(trackData[1]['instrumentalness']-otherTrackdata[1]['instrumentalness'])
-    dist+= abs((trackData[1]['loudness']/10)-(otherTrackdata[1]['loudness']/10))
+    #dist+= abs((trackData[1]['loudness']/10)-(otherTrackdata[1]['loudness']/10))
     #dist+= abs(trackData[1]['tempo']-otherTrackdata[1]['tempo'])
-    #"loudness" : -11.840,
-    #"tempo" : 98.002,
     return dist;

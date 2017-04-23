@@ -33,11 +33,14 @@ def main():
     playlistData = getAudioFeaturesForList(items, token)
     print("Building Graph...")
     playlistGraph = makeGraph(playlistData)
+    out = "Inital playlist distance: " + str(getInitWalkDist(playlistGraph))
+    print(out)
+    
     print("Building population...")
     population = initPopulation(playlistGraph, 20)
     print("Searching for best playlist...")
 
-    for i in range(0, 20):
+    for i in range(0, 50):
         population = applyGenetics(population,playlistGraph)
         population = sortWalks(population)
         bestWalk = population[0]

@@ -21,14 +21,14 @@ def getPlaylists(token, userID):
 	headers = {'Accept': 'application/json','Authorization': 'Bearer '+token}
 	url = GET_USERS_PLAYLIST_ENDPOINT.format(user_id=userID)
 	resp = requests.get(url, headers=headers)
-	print(resp)
 	items = resp.json()['items']
 	playlists = []
 	for item in items:
-		playlist = []
-		playlist.append(item['name'])
-		playlist.append(item['id'])
-		playlists.append(playlist)
+		if(item['owner']['id'] == userID):
+			playlist = []
+			playlist.append(item['name'])
+			playlist.append(item['id'])
+			playlists.append(playlist)
 	return playlists
 
 def getPlaylistTracks(playlistID, userID, token):
