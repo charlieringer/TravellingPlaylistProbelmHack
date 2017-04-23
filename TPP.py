@@ -11,8 +11,8 @@ def main():
     username = '21nnwwsdm2vvacv2jgbwbhkly'
     scope  = 'user-library-read playlist-read-private playlist-modify-public playlist-modify-private'
     token = util.prompt_for_user_token(username, scope, client_id='f248c8c713ea4c199e40cea4eae1bea4',client_secret='be9b3c6a8e1d4c98b66a09f89111e7ee',redirect_uri='http://localhost:8888')
-
-    playlists = getPlaylists()
+    print (token)
+    playlists = getPlaylists(token)
     print("Your playlists:")
     for i in range(len(playlists)):
         print(i, ": ", playlists[i][0])
